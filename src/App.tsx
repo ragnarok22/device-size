@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import '@theme-toggles/react/css/Classic.css'
 import { Classic } from '@theme-toggles/react'
-import './App.css'
 
 function App() {
   const [size, setSize] = useState({ width: window.outerWidth, height: window.outerHeight })
@@ -10,37 +9,24 @@ function App() {
       (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
   )
 
-  if (
-    localStorage.theme === 'dark' ||
-    (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-  ) {
-    document.documentElement.classList.add('dark')
-  } else {
-    document.documentElement.classList.remove('dark')
-  }
-
-  const switchMode = () => {
-    if (localStorage.theme === 'dark') {
-      localStorage.theme = 'light'
-      document.documentElement.classList.remove('dark')
-      setIsDark(false)
-    } else {
+  useEffect(() => {
+    if (isDark) {
       localStorage.theme = 'dark'
       document.documentElement.classList.add('dark')
-      setIsDark(true)
+    } else {
+      localStorage.theme = 'light'
+      document.documentElement.classList.remove('dark')
     }
-  }
+  }, [isDark])
 
   useEffect(() => {
-    window.addEventListener('resize', () => {
+    const handleResize = () => {
       setSize({ width: window.outerWidth, height: window.outerHeight })
-    })
-    return () => {
-      window.removeEventListener('resize', () => {
-        setSize({ width: window.outerWidth, height: window.outerHeight })
-      })
     }
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
   }, [])
+
   return (
     <div className="flex h-screen w-screen items-center justify-center bg-white transition duration-500 dark:bg-gray-800 dark:text-gray-200">
       <h1 className="container text-center text-3xl font-bold">
@@ -54,7 +40,7 @@ function App() {
         toggle={setIsDark}
         toggled={!isDark}
         className="absolute top-2 right-2 text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl"
-        onToggle={switchMode}
+        onToggle={() => setIsDark(prev => !prev)}
       />
     </div>
   )
