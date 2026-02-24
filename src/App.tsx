@@ -42,10 +42,10 @@ function App() {
     }
   }, [])
   return (
-    <div className="transition duration-500 flex justify-center items-center w-screen h-screen bg-white dark:bg-gray-800 dark:text-gray-200">
-      <h1 className="container text-center font-bold text-3xl">
+    <div className="flex h-screen w-screen items-center justify-center bg-white transition duration-500 dark:bg-gray-800 dark:text-gray-200">
+      <h1 className="container text-center text-3xl font-bold">
         Your device is
-        <span className="block md:inline md:ml-1">
+        <span className="block md:ml-1 md:inline">
           {size.width} x {size.height}
         </span>
       </h1>

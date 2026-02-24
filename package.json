@@ -7,8 +7,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
-    "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
-    "format:check": "prettier --check \"src/**/*.{ts,tsx,css}\"",
+    "format": "prettier --write \"**/*.{ts,tsx,css,js,json}\" --ignore-path .gitignore",
+    "format:check": "prettier --check \"**/*.{ts,tsx,css,js,json}\" --ignore-path .gitignore",
     "typecheck": "tsc --noEmit",
     "preview": "vite preview"
   },
@@ -30,6 +30,7 @@
     "globals": "^16.5.0",
     "postcss": "^8.5.6",
     "prettier": "^3.7.4",
+    "prettier-plugin-tailwindcss": "^0.7.2",
     "tailwindcss": "^4.1.17",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.56.1",
