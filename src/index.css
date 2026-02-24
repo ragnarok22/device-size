@@ -1,3 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@custom-variant dark {
+  @media (prefers-color-scheme: dark) {
+    &: not(.light *);
+  }
+  &: is(.dark *);
+}
