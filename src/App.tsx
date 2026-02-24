@@ -55,9 +55,6 @@ function App() {
         toggled={!isDark}
         className="absolute top-2 right-2 text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl"
         onToggle={switchMode}
-        placeholder={isDark ? '🌙' : '☀️'}
-        onPointerEnterCapture={undefined}
-        onPointerLeaveCapture={undefined}
       />
     </div>
   )
